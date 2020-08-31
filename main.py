@@ -7,9 +7,11 @@ import time
 
 import autoit
 from system_hotkey import SystemHotkey
+
+from autoPet import autoPetStart, onePetStart
 from skillAction import *
 from autoSC import *
-from tapping import tapping
+from tapping import tapping, tapCursor
 
 Client = "LDPlayer"
 ClientClass = "[CLASS:LDPlayerMainFrame]"
@@ -23,6 +25,8 @@ def register_hotkey():
     '''
 
     hk.register(('control', 'shift', 's'), callback=autoSCStart)
+    hk.register(('control', 'shift', 'x'), callback=autoPetStart)
+    hk.register(('control', 'shift', 'z'), callback=oneSCStart)
     hk.register(('f4', 'f4', 'f4'), callback=testFunction)
     hk.register(('f3', 'f3', 'f3'), callback=useSkills)
     hk.register(('f8', 'f8', 'f8'), callback=goTapping)
@@ -33,7 +37,7 @@ def register_hotkey():
 
 hk = SystemHotkey()
 
-gAutoing = False
+gAutoing = True
 
 
 def testFunction(evt):
@@ -98,7 +102,7 @@ def useSkills(evt):
 # infinite loop Falut!!!
 def goTapping(evt):
     # while True:
-    tapping()
+    tapCursor()
 
 
 def BottomMenuExit():

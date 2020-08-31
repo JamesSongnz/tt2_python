@@ -33,11 +33,13 @@ class Icons(enum.Enum):
 
 class Positions(enum.Enum):
     BMenuWheel = enum.auto()
-
+    RelicsOnPlayScr = enum.auto()
 
 pos_tables = \
     {
         Positions.BMenuWheel.name: (241, 740),
+        Positions.RelicsOnPlayScr.name: (35, 685),
+
     }
 
 
@@ -97,8 +99,9 @@ def IsOpenBottomMenuHalf():
 
 
 def bottomMenuExitFull():
-    if IsOpenBottomMenuFull():
-        tapMenuFullExit()
+    # Bug: temp :  checksum is changing whenever restart LDPlayer.
+    #if IsOpenBottomMenuFull():
+    tapMenuFullExit()
 
 
 def bottomMenuExitHalf():
@@ -116,7 +119,7 @@ def bottomMenuExit():
 def openBMenu(menu):
     x, y, _, _ = icon_tables_e[Icons.BMenu_Heroes.name]
     autoit.mouse_click('left', x, y, 1, 10)
-    time.sleep(1)
+    time.sleep(0.6)
 
     menuMakeFull()
 
@@ -133,5 +136,18 @@ def menuMakeFull():
 def menuScrollUp():
     x, y = pos_tables[Positions.BMenuWheel.name]
     autoit.mouse_move(x, y)
-    autoit.mouse_wheel('up', 3)
-    time.sleep(1)
+    autoit.mouse_wheel('up', 2)
+    # caution: must put delay to work wheel up
+    time.sleep(0.6)
+
+
+def turnPlayScreen():
+    # check Relics Icon on play screen
+    # 36, 686 0xf3320c
+    x, y = pos_tables[Positions.RelicsOnPlayScr.name]
+    color = autoit.pixel_get_color(x, y)
+    if color < 0xf00000:
+        # clear all poped up layered windows
+        bottomMenuExit()
+        time.sleep(0.2)
+        bottomMenuExit()

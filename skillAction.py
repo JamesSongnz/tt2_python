@@ -1,8 +1,14 @@
-from uiUtils import *
+import autoit
+
+import uiUtils
 
 
-skill_coord = {'HS': 45, 'DS': 140, 'HM':240, 'FS':320, 'WC': 420, 'SC':520 }
+skill_coord = {'HS': 45, 'DS': 140, 'HM': 234, 'FS': 328, 'WC': 420, 'SC': 517 }
 skill_btn_y = 940
+skill_btn_ready_y = 898
+
+
+
 
 
 """
@@ -12,7 +18,7 @@ skill_btn_y = 940
 
 """
 def useSkills(sks):
-    bottomMenuExit()
+    uiUtils.bottomMenuExit()
 
     for i in range(2):
         for sk_name in sks:
@@ -25,14 +31,24 @@ def useSkills(sks):
 
 """
 def useAllSkills(sks):
-    bottomMenuExit()
+    uiUtils.bottomMenuExit()
 
     for i in range(5):
         for key in skill_coord:
             useSkill(key)
 
 def useSkill(at):
-    autoit.mouse_click("left", skill_coord[at], skill_btn_y)
+    if checkReadyBtn(at):
+        autoit.mouse_click("left", skill_coord[at], skill_btn_y)
+
+
+def checkReadyBtn(at):
+    x = skill_coord[at]
+    color = autoit.pixel_get_color(x, skill_btn_ready_y)
+
+    if color == 0xffffff:
+        return True
+    return False
 
 
 def useAllSkillsButHS():
