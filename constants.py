@@ -70,6 +70,8 @@ click_coord_table = \
 CR_Dagger = 0x4a8429
 CR_AtiveSkill_lvup_btn = 0xc72b29
 CR_ActiveSkill_btn = 0xef6e14
+
+
 # skills
 skill_coord = {'HS': 45, 'DS': 140, 'HM': 234, 'FS': 328, 'WC': 420, 'SC': 517 }
 skill_btn_y = 940

@@ -7,7 +7,7 @@ from heroes import heroLeveling
 #from main import gAutoing
 import main as m
 from tapMenu import lvupActiveSkill
-from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger
+from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger, tap
 from uiUtils import turnPlayScreen
 
 ''' 
