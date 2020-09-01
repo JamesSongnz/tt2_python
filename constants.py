@@ -18,7 +18,17 @@ class Positions(enum.Enum):
     BMenuWheel = enum.auto()
     RelicsOnPlayScr = enum.auto()
 
+class HeroEleType(enum.Enum):
+    Spell = enum.auto()
+    Melee = enum.auto()
+    Range = enum.auto()
 
+CR_HeroEleTypes = \
+    {
+        HeroEleType.Spell: 0x00b1ca,
+        HeroEleType.Melee: 0xfb8649,
+        HeroEleType.Range: 0x6bbd42,
+    }
 
 pos_tables = \
     {
@@ -69,7 +79,8 @@ click_coord_table = \
 # colors for comparasion
 CR_Dagger = 0x4a8429
 CR_AtiveSkill_lvup_btn = 0xc72b29
-CR_ActiveSkill_btn = 0xef6e14
+CR_ActiveSkill_btn = 0xf79d08 #0xef6e14
+CR_ActiveSkill_btn2 = 0xef6e14
 
 
 # skills

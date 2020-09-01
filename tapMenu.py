@@ -3,7 +3,7 @@ import time
 import autoit
 
 from constants import tapmenu_megaboost_btn_y, c_megaboost, tapmenu_btn_init_y, swordmaster_btn_y, \
-    tapmenu_skill_lvbtn_x, CR_AtiveSkill_lvup_btn, CR_ActiveSkill_btn
+    tapmenu_skill_lvbtn_x, CR_AtiveSkill_lvup_btn, CR_ActiveSkill_btn, CR_ActiveSkill_btn2
 from heroes import hero_btn_x
 from uiUtils import menuScrollUp, bottomMenuExit, openBMenu, Icons
 from utils import IsColorAtCoord
@@ -32,7 +32,8 @@ def lvupActiveSkill():
     for i in range(6):
         y += distance_btn_y
         # check on skills  color ef6e14
-        if not IsColorAtCoord(hero_btn_x, y, CR_ActiveSkill_btn):
+        if not IsColorAtCoord(hero_btn_x, y, CR_ActiveSkill_btn) \
+                and not IsColorAtCoord(hero_btn_x, y, CR_ActiveSkill_btn2):
             continue
 
         # color = autoit.pixel_get_color(hero_btn_x, y)

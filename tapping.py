@@ -3,7 +3,7 @@ import time
 import autoit
 
 from constants import click_coord_table, CR_Dagger
-from utils import IsColorAtCoord
+from utils import IsColorAtCoord, IsColorInVRange
 
 
 def catchFairy():
@@ -33,11 +33,7 @@ def catchFairy():
 # dagger moving y offset  ( 6th: top 429 ~ 481)
 # dagger color 4a8421
 def isThereDagger(x, y):
-    for i in range(0, 50, 10):
-        if IsColorAtCoord(x, y + i, CR_Dagger):
-            return True
-
-    return False
+    return IsColorInVRange(x, y, CR_Dagger, 50)
 
 
 

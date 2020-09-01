@@ -10,6 +10,7 @@ from system_hotkey import SystemHotkey
 
 from autoPet import autoPetStart, onePetStart
 from autoPrestige import checkPrestige
+from equipMenu import changeHelmet, triggerHelmetChangeMode
 from skillAction import *
 from autoSC import *
 from tapMenu import lvupActiveSkill
@@ -41,9 +42,14 @@ hk = SystemHotkey()
 
 gAutoing = True
 
-
+testbool = True
 def testFunction(evt):
     print('test')
+    # global  testbool
+    #
+    # testbool = not testbool
+    # triggerHelmetChangeMode(testbool)
+    # changeHelmet()
     # checkPrestige()
     lvupActiveSkill()
     # bottomMenuExit()

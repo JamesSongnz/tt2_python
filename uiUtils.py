@@ -25,10 +25,10 @@ def IsExistIcon(pos_str):
     icon = icon_tables_e[pos_str]
     icon_check_sum = icon_checksums_e[pos_str]
 
-    print(f'x icon checksum, {icon}', {pos_str})
+    # print(f'x icon checksum, {icon}', {pos_str})
     x, y, x1, y1 = icon
     checksum = autoit.pixel_checksum(x, y, x1, y1)
-    print(f'x icon checksum, {checksum}')
+    # print(f'x icon checksum, {checksum}')
 
     return checksum == icon_check_sum
 

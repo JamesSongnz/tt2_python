@@ -2,6 +2,7 @@ import time
 
 import autoit
 
+from equipMenu import triggerHelmetChangeMode
 from heroes import hero_btn_x
 from uiUtils import bottomMenuExit, openBMenu, Icons
 
@@ -19,6 +20,7 @@ def checkPrestige():
 
     if checksum == stageicon_checksum:
         samestage_count += 1
+        triggerHelmetChangeMode(True)
         # not stucked ?
         if samestage_count < 3:
             return False
@@ -38,6 +40,9 @@ def checkPrestige():
     # reset vars
     stageicon_checksum = 0
     samestage_count = 0
+
+    # reset other module
+    triggerHelmetChangeMode(False)
 
     # click prestige btn
     bottomMenuExit()

@@ -19,3 +19,22 @@ def IsColorAtCoord(x, y, check_color):
         return True
 
     return False
+
+
+def IsColorInVRange(x, y, color, yrange = 50, step=10):
+    for i in range(0, yrange, step):
+        if IsColorAtCoord(x, y + i, color):
+            return True
+
+    return False
+
+def IsColorInRect(x, y, color, xrange, yrange, step = 2):
+    xoffset = int(xrange / 2)
+    yoffset = int(yrange / 2)
+
+    for i in range(-xoffset, +xoffset, step):
+        for j in range(-yoffset, +yoffset, step):
+            if IsColorAtCoord(x + i, y + j, color):
+                return True
+
+    return False
