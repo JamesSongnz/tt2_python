@@ -2,69 +2,10 @@ import time
 
 import autoit
 
+from constants import icon_tables_e, icon_checksums_e, Icons, pos_tables, Positions
 from skillAction import *
 from tapping import tapMenuFullExit
 
-''' 
-icon_tables = \
-    {
-       'right_x_half_icon': [655, 55, 687, 76],
-    }
-
-icon_checksums = \
-    {
-        'right_x_half_icon': 22222222,
-    }
-'''
-
-import enum
-
-
-class Icons(enum.Enum):
-    Bottom_Menu_X_Full = enum.auto()
-    Bottom_Menu_X_Half = enum.auto()
-    # b menu
-    BMenu_Tap = enum.auto()
-    BMenu_Heroes = enum.auto()
-    BMenu_Equip = enum.auto()
-    BMenu_Pet = enum.auto()
-
-    Menu_Make_FUll = enum.auto()
-
-class Positions(enum.Enum):
-    BMenuWheel = enum.auto()
-    RelicsOnPlayScr = enum.auto()
-
-pos_tables = \
-    {
-        Positions.BMenuWheel.name: (241, 740),
-        Positions.RelicsOnPlayScr.name: (35, 685),
-
-    }
-
-
-icon_tables_e = \
-    {
-#        Icons.RIGHT_X.name: {'x': 655, 'y': 55, 'x2': 687, 'y2': 76},
-        Icons.Bottom_Menu_X_Full.name: (510, 48, 535, 60),
-        Icons.Bottom_Menu_X_Half.name: (510, 585, 535, 602),
-
-        # bottom menu
-        Icons.BMenu_Tap.name: (45, 1025, 0, 0),
-        Icons.BMenu_Heroes.name: (145, 1025, 0, 0),
-        Icons.BMenu_Equip.name: (235, 1025, 0, 0),
-        Icons.BMenu_Pet.name: (325, 1025, 0, 0),
-
-        Icons.Menu_Make_FUll.name: (430, 590, 465, 600)
-    }
-
-icon_checksums_e = \
-    {
-        Icons.Bottom_Menu_X_Full.name: 1531251295,
-        Icons.Bottom_Menu_X_Half.name: 1952088816,
-
-        Icons.Menu_Make_FUll.name: 1823557018
-    }
 
 def CoordFromTuple(tuple):
     return tuple[0], tuple[1], tuple[2], tuple[3]
@@ -117,7 +58,7 @@ def bottomMenuExit():
 
 # bottom menu
 def openBMenu(menu):
-    x, y, _, _ = icon_tables_e[Icons.BMenu_Heroes.name]
+    x, y, _, _ = icon_tables_e[menu]
     autoit.mouse_click('left', x, y, 1, 10)
     time.sleep(0.6)
 

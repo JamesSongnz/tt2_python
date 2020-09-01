@@ -9,8 +9,10 @@ import autoit
 from system_hotkey import SystemHotkey
 
 from autoPet import autoPetStart, onePetStart
+from autoPrestige import checkPrestige
 from skillAction import *
 from autoSC import *
+from tapMenu import lvupActiveSkill
 from tapping import tapping, tapCursor
 
 Client = "LDPlayer"
@@ -42,7 +44,8 @@ gAutoing = True
 
 def testFunction(evt):
     print('test')
-    exitFunction(1)
+    # checkPrestige()
+    lvupActiveSkill()
     # bottomMenuExit()
     # useAllSkills()
     # BottomMenuExit()
@@ -56,12 +59,16 @@ def init_env():
     # autoit.hot_key_set("{ESC}", "OnExit")
     # autoit.hot_key_set("{F4}", "testFunction")
 
-    # window align
-    autoit.win_activate(ClientClass)
-    autoit.win_move(Client, 0, 0)
+    activateWindow()
 
     global gAutoing
     gAutoing = True
+
+
+def activateWindow():
+    # window align
+    autoit.win_activate(ClientClass)
+    autoit.win_move(Client, 0, 0)
 
 
 def getAutoing():

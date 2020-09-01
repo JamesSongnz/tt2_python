@@ -2,9 +2,11 @@ import time
 from threading import Thread
 
 import skillAction
+from autoPrestige import checkPrestige
 from heroes import heroLeveling
 #from main import gAutoing
 import main as m
+from tapMenu import lvupActiveSkill
 from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger
 from uiUtils import turnPlayScreen
 
@@ -26,6 +28,7 @@ def autoSCStart(evt):
 
 
 def oneSCStart(evt):
+    m.activateWindow()
     SCLoop()
 
 def autoSC(arg):
@@ -48,9 +51,19 @@ def SCLoop():
     #activateFS()
     # posing dagger
     posionDagger()
-    # heroes lv up
-    heroLeveling()
+
     # catch fairy
     catchFairy()
+
+    # heroes lv up
+    heroLeveling()
+
+    # check prestige & restart active skills
+    if checkPrestige():
+        lvupActiveSkill()
+
+    # move cursor to indicate loop action is over
+    tap(325, 780)
+
     # wait next turn 10s
     time.sleep(5)

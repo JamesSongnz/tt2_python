@@ -5,6 +5,7 @@ import time
 
 import autoit
 
+from constants import hero_btn_init_y, hero_btn_x, hero_btn_activated_check_y
 from uiUtils import bottomMenuExitFull, Icons, openBMenu, menuScrollUp, bottomMenuExit
 
 import enum
@@ -17,9 +18,7 @@ class BMenus(enum.Enum):
     Pet = enum.auto()
 '''
 
-hero_btn_x = 548  # rightmost of btn
-hero_btn_init_y = 210
-hero_btn_activated_check_y = 165
+
 
 
 def heroLeveling():

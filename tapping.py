@@ -2,20 +2,8 @@ import time
 
 import autoit
 
-click_coord_table = \
-    {
-        'tapping': (310, 525),
-        'pet': (335, 510),
-        'petburst': (285, 455),
-        'clanmate': (215, 545),
-        'menufullexit': (561, 44),
-        'menuharfexit': (525, 595),
-        'fairystart': (80, 280),
-        'fairyend': (580, 280),
-        'fairycollect': (500, 774),
-
-
-    }
+from constants import click_coord_table, CR_Dagger
+from utils import IsColorAtCoord
 
 
 def catchFairy():
@@ -42,12 +30,19 @@ def catchFairy():
     _tap('fairycollect')
 
 
+
 def posionDagger():
     daggers = [(160, 430), (218, 460), (258, 484), (300, 480), (343, 440), (360, 430)]
+    # 177, 427
+
+    # dagger color 4d7f24, 4a 84 29
     for d in daggers:
-        autoit.mouse_click('left', d[0], d[1], 3, 10)
-        for i in range(40):
-            tapCursor()
+        # is there dagger?
+        if IsColorAtCoord(d[0], d[1], CR_Dagger):
+            autoit.mouse_click('left', d[0], d[1], 3, 10)
+            # tap during 2s
+            for i in range(40):
+                tapCursor()
         #time.sleep(0.2)
 
 def activateFS():
@@ -95,6 +90,10 @@ def tapMenuFullExit():
 def _tap(pos_str):
     x, y = click_coord_table[pos_str]
     autoit.mouse_click("left", x, y, 1, 3)
+
+def tap(x,y):
+    autoit.mouse_click("left", x, y, 1, 3)
+
 
 def _tapCursor():
     autoit.mouse_down('left')
