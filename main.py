@@ -8,9 +8,10 @@ import time
 import autoit
 from system_hotkey import SystemHotkey
 
+from autoHeavenly import *
 from autoPet import autoPetStart, onePetStart
 from autoPrestige import checkPrestige
-from equipMenu import changeHelmet, triggerHelmetChangeMode
+from equipMenu import changeHelmet, triggerHelmetChangeMode, getStuckedState
 from skillAction import *
 from autoSC import *
 from tapMenu import lvupActiveSkill
@@ -28,8 +29,9 @@ def register_hotkey():
     '''
 
     hk.register(('control', 'shift', 's'), callback=autoSCStart)
-    hk.register(('control', 'shift', 'x'), callback=autoPetStart)
     hk.register(('control', 'shift', 'z'), callback=oneSCStart)
+    hk.register(('control', 'shift', 'x'), callback=autoHSStart)
+    hk.register(('control', 'shift', 'c'), callback=oneHSStart)
     hk.register(('f4', 'f4', 'f4'), callback=testFunction)
     hk.register(('f3', 'f3', 'f3'), callback=useSkills)
     hk.register(('f8', 'f8', 'f8'), callback=goTapping)
@@ -45,13 +47,26 @@ gAutoing = True
 testbool = True
 def testFunction(evt):
     print('test')
+    ret  = enoughMana('HS')
+    print(f'ret ', {ret})
+    # getStuckedState()
+    # triggerHelmetChangeMode(True)
+    # getStuckedState()
+
     # global  testbool
     #
     # testbool = not testbool
     # triggerHelmetChangeMode(testbool)
     # changeHelmet()
-    # checkPrestige()
-    lvupActiveSkill()
+
+    # if checkPrestige():
+    #     lvupActiveSkill()
+    #
+    # # set hero type equip
+    # changeHelmet()
+
+
+    # lvupActiveSkill()
     # bottomMenuExit()
     # useAllSkills()
     # BottomMenuExit()

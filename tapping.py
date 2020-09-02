@@ -6,11 +6,11 @@ from constants import click_coord_table, CR_Dagger
 from utils import IsColorAtCoord, IsColorInVRange
 
 
-def catchFairy():
+def catchFairy(mode='long'):
     # swipe fairy line
     x, y = click_coord_table['fairystart']
     x2, _ = click_coord_table['fairyend']
-    step  = 12
+    step = 12
     offset = int((x2 - x ) / step)
     for i in range(step):
         autoit.mouse_click('left', x+i*offset, y, 1, 5)
@@ -18,11 +18,12 @@ def catchFairy():
 
         tapFairyCollect()
 
-    # reverse
-    for i in range(11, -1, -1):
-        autoit.mouse_click('left', x + i*offset, y, 1, 5)
-        time.sleep(0.07)
-        tapFairyCollect()
+    # reverse only mode is 1 (normal)
+    if 'long' == mode:
+        for i in range(11, -1, -1):
+            autoit.mouse_click('left', x + i*offset, y, 1, 5)
+            time.sleep(0.07)
+            tapFairyCollect()
 
 
     time.sleep(1)
@@ -52,6 +53,24 @@ def posionDagger():
                 tapCursor()
 
         #time.sleep(0.2)
+
+
+
+def posionDaggerAtOnce():
+    daggers = [(177, 432), (220, 445), (260, 450), (303, 450), (343, 445), (386, 432)]
+    # 177, 427
+
+    # d = daggers[0]
+    # if not isThereDagger(d[0], d[1]):
+    #     return
+
+    # dagger color 4d7f24, 4a 84 29
+    # click all dagger quickly
+    for d in daggers:
+        autoit.mouse_click('left', d[0], d[1]+20, 3, 3)
+        # tap during short time
+        # for i in range(2):
+        #     tapCursor()
 
 def activateFS():
     for i in range(20):

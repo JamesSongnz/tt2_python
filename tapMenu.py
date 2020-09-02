@@ -23,7 +23,7 @@ def lvupActiveSkill():
     # for lv up all skills
     # sword master lv up
     autoit.mouse_click('left', hero_btn_x, swordmaster_btn_y, 1, 5)
-
+    time.sleep(0.5)
     # active skills
     # 451, 541, 626, 717, 802, 896  ,  x = 370  c= 0xe00000
     distance_btn_y = 88

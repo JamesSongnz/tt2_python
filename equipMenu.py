@@ -3,11 +3,16 @@ import time
 
 import autoit
 
+import heroes
 from constants import CR_HeroEleTypes, Icons, HeroEleType
 from uiUtils import bottomMenuExit, openBMenu
-from utils import IsColorInRect
+from utils import IsColorInRect, IsColorAtCoord
 
 _b_changing = False
+
+def getStuckedState():
+    print(f' getStuckedState ', {_b_changing})
+    return _b_changing
 
 def triggerHelmetChangeMode(on):
     global  _b_changing
@@ -21,16 +26,12 @@ def changeHelmet():
     if _b_changing == False:
         return
 
-    # open bottom menu
-    bottomMenuExit()
-    openBMenu(Icons.BMenu_Heroes.name)
-
     # get highest hero type
     # coord 368,281 +- 4, 6
         # Spell:  CR 0x00b1CA
         # melee: CR 0xfb8649
         # Range: 0x6bBD42
-    htype = getHeroType()
+    htype = heroes.hero_type
     print(f' change helmet get he type ', {htype})
 
     # move to helmet equip tap
@@ -72,9 +73,9 @@ def changeHelmet():
 
     init_y = 232
     interval = 91
-    equip_spell_y = 1
-    equip_range_y = 0
-    equip_melee_y = 4
+    equip_spell_y = 0
+    equip_range_y = 4
+    equip_melee_y = 2
 
     equip_x = 500
 
@@ -87,8 +88,14 @@ def changeHelmet():
     else:
         y = -2 # exit btn y offset
 
+    # check already equipped
+    equip_y = init_y + y * interval
+    if not IsColorAtCoord(equip_x, equip_y, 0x59ac3d):
+        bottomMenuExit()
+        return
+
     # equip
-    autoit.mouse_click('left', equip_x, init_y + y * interval, 1, 10)
+    autoit.mouse_click('left', equip_x, equip_y, 1, 10)
 
     bottomMenuExit()
     time.sleep(1)
@@ -96,12 +103,4 @@ def changeHelmet():
     # clear trigger flag
     _b_changing = False
 
-def getHeroType():
-    x = 368
-    y = 281
 
-    for key, color in CR_HeroEleTypes.items():
-        if IsColorInRect(x, y, color, 4, 6):
-            return key
-
-    return None

@@ -5,10 +5,12 @@ import time
 
 import autoit
 
-from constants import hero_btn_init_y, hero_btn_x, hero_btn_activated_check_y
+from constants import hero_btn_init_y, hero_btn_x, hero_btn_activated_check_y, CR_HeroEleTypes, HeroEleType
 from uiUtils import bottomMenuExitFull, Icons, openBMenu, menuScrollUp, bottomMenuExit
 
 import enum
+
+from utils import IsColorInRect
 
 ''' 
 class BMenus(enum.Enum):
@@ -19,9 +21,11 @@ class BMenus(enum.Enum):
 '''
 
 
+hero_type = HeroEleType.Spell
 
 
 def heroLeveling():
+    global hero_type
     print(f'Hero lv up')
 
     # open bottom menu
@@ -30,6 +34,7 @@ def heroLeveling():
 
     # check activated btn
     # click lv up btn
+    hero_type = getHeroType()
 
     # 480 - 210  / 5 :    - distance due to addition first in the loop
     if not checkActivatedHeroBtn():
@@ -66,3 +71,13 @@ def checkActivatedHeroBtn():
         if color > 0xe00000:
             return True
     return False
+
+def getHeroType():
+    x = 368
+    y = 281
+
+    for key, color in CR_HeroEleTypes.items():
+        if IsColorInRect(x, y, color, 4, 6):
+            return key
+
+    return None

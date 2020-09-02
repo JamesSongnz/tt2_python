@@ -2,6 +2,15 @@
 import enum
 
 
+
+# config for HS
+Stucked_check_count = 15
+Stay_Same_Stage_count = 3
+
+# for SC
+# Stucked_check_count = 3
+# Stay_Same_Stage_count = 1
+
 # UI utils
 class Icons(enum.Enum):
     Bottom_Menu_X_Full = enum.auto()
@@ -84,9 +93,10 @@ CR_ActiveSkill_btn2 = 0xef6e14
 
 
 # skills
-skill_coord = {'HS': 45, 'DS': 140, 'HM': 234, 'FS': 328, 'WC': 420, 'SC': 517 }
+skill_coord = {'HS': 45, 'DS': 140, 'HM': 233, 'FS': 328, 'WC': 421, 'SC': 515 }
 skill_btn_y = 940
-skill_btn_ready_y = 898
+skill_btn_ready_y = 961
+skill_btn_active_y = 894 # bottom white of circle  - 897
 
 # menu
 
