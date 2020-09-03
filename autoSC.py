@@ -10,7 +10,7 @@ from heroes import heroLeveling
 import main as m
 from tapMenu import lvupActiveSkill
 from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger, tap
-from uiUtils import turnPlayScreen
+from uiUtils import turnPlayScreen, checkSlowDown
 
 ''' 
 class Auto:
@@ -76,7 +76,9 @@ def SCLoop():
         lvupActiveSkill()
 
     # check slow down
-    checkSlowDown()
+    # if 1:
+    if checkSlowDown():
+        changeSlash(SlashType.SCPush)
 
     # move cursor to indicate loop action is over
     tap(325, 780)

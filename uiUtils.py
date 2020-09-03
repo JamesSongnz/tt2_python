@@ -105,6 +105,10 @@ def checkSlowDown(mode='SCPorter'):
     BossTimerBar_SCPorter_Limit = 400
     BossTimerBar_SCPush_Limit = 200
 
+    # check is there timer?
+    if 0xffffff != autoit.pixel_get_color(159, BossTimerBar_Endy):
+        return False
+
     # get current position of the timer bar
     cur_bar_x = 0
     for x in range(BossTimerBar_Endx, BossTimerBar_Beginx, -1):

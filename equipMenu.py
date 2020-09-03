@@ -316,7 +316,7 @@ def comparePatternOnScr(x, y, pixels):
 
         # try region
         # found = IsColorInRect(x, y, pixels[i], xrange=1, yrange=1, step=1)
-        found = IsColorAtCoord(x+i, y, pixels[i], offset=0x2)
+        found = IsColorAtCoord(x+i, y, pixels[i], offset=0xf)
         print(f'found pixel x y on p, equip p ', {found}, {x+i}, {y}, {hex(pixels[i])})
         if not found:
             return False
