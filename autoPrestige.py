@@ -39,30 +39,35 @@ def checkPrestige():
         samestage_count = 0
         return False
 
+    resetRunVars()
 
-    # move through to prestige
-    samestage_count = 0
+    doPrestige()
 
-    # reset vars
-    stageicon_checksum = 0
-    samestage_count = 0
 
-    # reset other module
-    triggerHelmetChangeMode(False)
+    time.sleep(15)
+    # time.sleep(1500)
+    return True
 
+
+def doPrestige():
     # click prestige btn
     bottomMenuExit()
     openBMenu(Icons.BMenu_Tap.name)
     #   click prestige btn , y 331
     autoit.mouse_click('left', hero_btn_x, 331, 1, 10)
-
     time.sleep(2)
-
     # # Prestige btn : 366, 890
-    # autoit.mouse_click('left', 366, 930, 1, 10)
-    # time.sleep(10)
-    # autoit.mouse_click('left', 442, 794, 1, 10)
+    autoit.mouse_click('left', 366, 930, 1, 10)
+    time.sleep(2)
+    autoit.mouse_click('left', 442, 794, 1, 10)
     # wait
-    time.sleep(15)
-    time.sleep(1500)
-    return True
+
+def resetRunVars():
+    global samestage_count, stageicon_checksum
+    # move through to prestige
+    samestage_count = 0
+    # reset vars
+    stageicon_checksum = 0
+    samestage_count = 0
+    # reset other module
+    triggerHelmetChangeMode(False)

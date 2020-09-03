@@ -9,8 +9,14 @@ from uiUtils import menuScrollUp, bottomMenuExit, openBMenu, Icons
 from utils import IsColorAtCoord
 
 
+# max = -1 , 0 : disable, 1~ : lv 1
+tap_active_skill_lists = {
+    'SC': [('HS',-1), ('DS', -1), ('MH', -1), ('FS', -1), ('WC', -1), ('SC', -1)],
+    'HS': [('HS',-1), ('DS', 1), ('MH', -1), ('FS', -1), ('WC', -1), ('SC', -1)],
 
-def lvupActiveSkill():
+}
+
+def lvupActiveSkill(mode='SC'):
     print(f'Tap menu lv up')
 
     # open bottom menu
@@ -28,9 +34,16 @@ def lvupActiveSkill():
     # 451, 541, 626, 717, 802, 896  ,  x = 370  c= 0xe00000
     distance_btn_y = 88
 
+    skill_list = tap_active_skill_lists[mode]
     y = tapmenu_btn_init_y - distance_btn_y
-    for i in range(6):
+    for i, sk in enumerate(skill_list):
+    # for i in range(6):
         y += distance_btn_y
+
+        # check diabled skill
+        if sk[1] == 0:
+            continue
+
         # check on skills  color ef6e14
         if not IsColorAtCoord(hero_btn_x, y, CR_ActiveSkill_btn) \
                 and not IsColorAtCoord(hero_btn_x, y, CR_ActiveSkill_btn2):
@@ -44,6 +57,11 @@ def lvupActiveSkill():
 
         autoit.mouse_click('left', hero_btn_x, y, 1, 10)
 
+        # check lv number
+        if sk[1] == 1:
+            continue
+
+        #else lv up max
         # check if possible lv up
         time.sleep(0.3)
         if IsColorAtCoord(tapmenu_skill_lvbtn_x, y, CR_AtiveSkill_lvup_btn):

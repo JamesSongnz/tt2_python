@@ -67,7 +67,7 @@ def posionDaggerAtOnce():
     # dagger color 4d7f24, 4a 84 29
     # click all dagger quickly
     for d in daggers:
-        autoit.mouse_click('left', d[0], d[1]+20, 3, 3)
+        autoit.mouse_click('left', d[0], d[1], 3, 3)
         # tap during short time
         # for i in range(2):
         #     tapCursor()

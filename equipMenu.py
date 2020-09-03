@@ -4,7 +4,7 @@ import time
 import autoit
 
 import heroes
-from constants import CR_HeroEleTypes, Icons, HeroEleType
+from constants import CR_HeroEleTypes, Icons, HeroEleType, Equip_Ele_Spell_y, Equip_Ele_Range_y, Equip_Ele_Melee_y
 from uiUtils import bottomMenuExit, openBMenu
 from utils import IsColorInRect, IsColorAtCoord
 
@@ -73,18 +73,14 @@ def changeHelmet():
 
     init_y = 232
     interval = 91
-    equip_spell_y = 0
-    equip_range_y = 4
-    equip_melee_y = 2
-
     equip_x = 500
 
     if htype == HeroEleType.Melee:
-        y = equip_melee_y
+        y = Equip_Ele_Melee_y
     elif htype == HeroEleType.Range:
-        y = equip_range_y
+        y = Equip_Ele_Range_y
     elif htype == HeroEleType.Spell:
-        y = equip_spell_y
+        y = Equip_Ele_Spell_y
     else:
         y = -2 # exit btn y offset
 

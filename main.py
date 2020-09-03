@@ -10,7 +10,7 @@ from system_hotkey import SystemHotkey
 
 from autoHeavenly import *
 from autoPet import autoPetStart, onePetStart
-from autoPrestige import checkPrestige
+from autoPrestige import checkPrestige, doPrestige
 from equipMenu import changeHelmet, triggerHelmetChangeMode, getStuckedState
 from skillAction import *
 from autoSC import *
@@ -46,9 +46,24 @@ gAutoing = True
 
 testbool = True
 def testFunction(evt):
+
     print('test')
-    ret  = enoughMana('HS')
-    print(f'ret ', {ret})
+    constants.ManaEnoughHS_x = 150
+    # doPrestige()
+    # time.sleep(15)
+    lvupActiveSkill('SC')
+    # triggerHelmetChangeMode(True)
+    # changeHelmet()
+    # from timeit import default_timer as timer
+    #
+    # start = timer()
+    # # ...
+    # time.sleep(0.7)
+    # end = timer()
+    # print(end - start)
+
+    # ret  = enoughMana('HS')
+    # print(f'ret ', {ret})
     # getStuckedState()
     # triggerHelmetChangeMode(True)
     # getStuckedState()

@@ -113,3 +113,13 @@ tapmenu_btn_init_y = 451
 hero_btn_x = 548  # rightmost of btn
 hero_btn_init_y = 210
 hero_btn_activated_check_y = 165
+
+# Equp Helm type
+Equip_Ele_Spell_y = 0
+Equip_Ele_Range_y = 2
+Equip_Ele_Melee_y = 3
+
+# HS config
+ManaEnoughHS_x = 100
+ManaBar_y = 839
+HS_Spamming_Keep_cnt = 8

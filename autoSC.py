@@ -19,6 +19,7 @@ class AutoSC(Auto):
 
 '''
 
+SCRunMode = 'push'
 
 def autoSCStart(evt):
     SCThread = Thread(target=autoSC, args=(1,))
@@ -40,6 +41,7 @@ def autoSC(arg):
 
 
 def SCLoop():
+    global SCRunMode
     print(f' autoSC, gauto ', {m.getAutoing()})
     # check play screen status
     turnPlayScreen()
@@ -48,10 +50,14 @@ def SCLoop():
     # click pet
     # use dagger instead of tapPetMoney()
     tapClanmate()
-    # active FS
-    #activateFS()
-    # posing dagger
-    posionDagger()
+
+    if SCRunMode == 'push':
+        # posing dagger
+        posionDagger()
+    else:
+        tapPetMoney()
+        # active FS
+        activateFS()
 
     # catch fairy
     catchFairy()
