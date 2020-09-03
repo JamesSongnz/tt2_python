@@ -64,13 +64,14 @@ def SCLoop():
 
     # heroes lv up
     heroLeveling()
+    #  move into hero leveling () set hero type equip
+    # changeHelmet()
 
     # check prestige & restart active skills
     if checkPrestige():
         lvupActiveSkill()
 
-    # set hero type equip
-    changeHelmet()
+
 
     # move cursor to indicate loop action is over
     tap(325, 780)

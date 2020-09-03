@@ -20,7 +20,7 @@ def IsColorAtCoord(x, y, check_color):
 
     return False
 
-def IsOneColorAtCoord(x, y, one_color):
+def IsOneColorAtCoord(x, y, one_color, offset=0xf):
     color = autoit.pixel_get_color(x, y )
     r = color >> 16 & 0xff
     g = color >> 8 & 0xff
@@ -31,17 +31,15 @@ def IsOneColorAtCoord(x, y, one_color):
     cg = one_color >> 8 & 0xff
     cb = one_color & 0xff
 
-    offset = 0x0f
-
     pc = r if cr!=0x00 else (g if cg!=0x00 else b)
     oc = cr if cr!=0x00 else (cg if cg!=0x00 else cb)
 
     return True if oc - offset <= pc <= oc + offset else False
 
-def IsOneColorInVRange(x, y, one_color, yrange = 50, step=10):
+def IsOneColorInVRange(x, y, one_color, yrange = 50, step=10, offset=0xf):
 
     for i in range(0, yrange, step):
-        if IsOneColorAtCoord(x, y + i, one_color):
+        if IsOneColorAtCoord(x, y + i, one_color, offset):
             return True
 
     return False

@@ -168,10 +168,12 @@ def doOtherAction(other_action):
         posionDaggerAtOnce()
     elif other_action == 'helmet':
         # set hero type equip
-        changeHelmet()
+        #  move into hero leveling ()
+        # changeHelmet()
+        pass
     elif other_action == 'hero_helmet':
         heroLeveling()
-        changeHelmet()
+        # move into hero leveling  changeHelmet()
     else:
         pass
 

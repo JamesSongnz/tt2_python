@@ -12,6 +12,7 @@ from autoHeavenly import *
 from autoPet import autoPetStart, onePetStart
 from autoPrestige import checkPrestige, doPrestige
 from equipMenu import changeHelmet, triggerHelmetChangeMode, getStuckedState
+from heroes import checkNewlyActivatedHero
 from skillAction import *
 from autoSC import *
 from tapMenu import lvupActiveSkill
@@ -48,10 +49,14 @@ testbool = True
 def testFunction(evt):
 
     print('test')
-    constants.ManaEnoughHS_x = 150
+    # constants.ManaEnoughHS_x = 150
+    # ret = checkNewlyActivatedHero()
+    # print(f'ret ', {ret})
+
+    heroLeveling()
     # doPrestige()
     # time.sleep(15)
-    lvupActiveSkill('SC')
+    # lvupActiveSkill('SC')
     # triggerHelmetChangeMode(True)
     # changeHelmet()
     # from timeit import default_timer as timer

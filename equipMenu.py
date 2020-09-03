@@ -3,7 +3,6 @@ import time
 
 import autoit
 
-import heroes
 from constants import CR_HeroEleTypes, Icons, HeroEleType, Equip_Ele_Spell_y, Equip_Ele_Range_y, Equip_Ele_Melee_y
 from uiUtils import bottomMenuExit, openBMenu
 from utils import IsColorInRect, IsColorAtCoord
@@ -20,10 +19,10 @@ def triggerHelmetChangeMode(on):
     _b_changing = on
     print(f' helm change mode after set' , {_b_changing})
 
-def changeHelmet():
+def changeHelmet(mode='stucked', hero_type=-1):
 
     global _b_changing
-    if _b_changing == False:
+    if 'stucked' == mode and _b_changing == False:
         return
 
     # get highest hero type
@@ -31,8 +30,7 @@ def changeHelmet():
         # Spell:  CR 0x00b1CA
         # melee: CR 0xfb8649
         # Range: 0x6bBD42
-    htype = heroes.hero_type
-    print(f' change helmet get he type ', {htype})
+    print(f' change helmet get he type ', {hero_type})
 
     # move to helmet equip tap
     openBMenu(Icons.BMenu_Equip.name)
@@ -75,11 +73,11 @@ def changeHelmet():
     interval = 91
     equip_x = 500
 
-    if htype == HeroEleType.Melee:
+    if hero_type == HeroEleType.Melee:
         y = Equip_Ele_Melee_y
-    elif htype == HeroEleType.Range:
+    elif hero_type == HeroEleType.Range:
         y = Equip_Ele_Range_y
-    elif htype == HeroEleType.Spell:
+    elif hero_type == HeroEleType.Spell:
         y = Equip_Ele_Spell_y
     else:
         y = -2 # exit btn y offset
