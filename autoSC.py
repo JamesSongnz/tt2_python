@@ -3,7 +3,8 @@ from threading import Thread
 
 import skillAction
 from autoPrestige import checkPrestige
-from equipMenu import changeHelmet
+from constants import SlashType
+from equipMenu import changeHelmet, changeSlash
 from heroes import heroLeveling
 #from main import gAutoing
 import main as m
@@ -19,7 +20,7 @@ class AutoSC(Auto):
 
 '''
 
-SCRunMode = 'push'
+SCRunMode = 'farm'
 
 def autoSCStart(evt):
     SCThread = Thread(target=autoSC, args=(1,))
@@ -35,6 +36,9 @@ def oneSCStart(evt):
 
 def autoSC(arg):
     #global gAutoing
+
+    # equip slash for SC Porter at first
+    changeSlash(SlashType.SCPorter)
 
     while m.getAutoing():
         SCLoop()
@@ -71,7 +75,8 @@ def SCLoop():
     if checkPrestige():
         lvupActiveSkill()
 
-
+    # check slow down
+    checkSlowDown()
 
     # move cursor to indicate loop action is over
     tap(325, 780)

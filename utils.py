@@ -1,8 +1,11 @@
 import autoit
 
+from constants import HeroEleType
 
-def IsColorAtCoord(x, y, check_color):
+
+def IsColorAtCoord(x, y, check_color, offset=0x0f):
     color = autoit.pixel_get_color(x, y )
+    print(f'        color at ', {x}, {y}, {hex(color)})
     r = color >> 16 & 0xff
     g = color >> 8 & 0xff
     b = color & 0xff
@@ -10,8 +13,6 @@ def IsColorAtCoord(x, y, check_color):
     cr = check_color >> 16 & 0xff
     cg = check_color >> 8 & 0xff
     cb = check_color & 0xff
-
-    offset = 0x0f
 
     if cr-offset <= r <= cr+offset and \
             cg-offset <= g <= cg+offset and \
@@ -45,12 +46,20 @@ def IsOneColorInVRange(x, y, one_color, yrange = 50, step=10, offset=0xf):
     return False
 
 
-def IsColorInVRange(x, y, color, yrange = 50, step=10):
+def IsColorInVRange(x, y, color, yrange = 50, step=10, offset=0xf):
     for i in range(0, yrange, step):
-        if IsColorAtCoord(x, y + i, color):
+        if IsColorAtCoord(x, y + i, color, offset):
             return True
 
     return False
+
+# return offset of y
+def findColorInVRange(x, y, color, yrange = 50, step=10, offset=0xf):
+    for i in range(0, yrange, step):
+        if IsColorAtCoord(x, y + i, color, offset):
+            return i
+
+    return -1
 
 def IsColorInRect(x, y, color, xrange, yrange, step = 2):
     xoffset = int(xrange / 2)
@@ -58,7 +67,8 @@ def IsColorInRect(x, y, color, xrange, yrange, step = 2):
 
     for i in range(-xoffset, +xoffset, step):
         for j in range(-yoffset, +yoffset, step):
-            if IsColorAtCoord(x + i, y + j, color):
+            if IsColorAtCoord(x + i, y + j, color, offset=0x2f):
                 return True
 
     return False
+

@@ -92,3 +92,35 @@ def turnPlayScreen():
         bottomMenuExit()
         time.sleep(0.2)
         bottomMenuExit()
+
+
+# check boss timer bar
+# ret : True : slow down state
+def checkSlowDown(mode='SCPorter'):
+    # bar = 423, 138 ==>  x: 190
+    # 400 : SC porter -> SC push
+    BossTimerBar_Endx = 423
+    BossTimerBar_Endy =  138
+    BossTimerBar_Beginx = 190
+    BossTimerBar_SCPorter_Limit = 400
+    BossTimerBar_SCPush_Limit = 200
+
+    # get current position of the timer bar
+    cur_bar_x = 0
+    for x in range(BossTimerBar_Endx, BossTimerBar_Beginx, -1):
+        c = autoit.pixel_get_color(x, BossTimerBar_Endy)
+        if c == 0xffffff:
+            cur_bar_x = x
+            break
+
+    print(f' Slow down : chechk boss timer bar ', {cur_bar_x})
+    # check if it is slow down state
+    if mode == 'SCPorter' and cur_bar_x < BossTimerBar_SCPorter_Limit:
+        return True
+    elif mode == 'SCPush' and cur_bar_x < BossTimerBar_SCPush_Limit:
+        return True
+
+    return False
+
+
+

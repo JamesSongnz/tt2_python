@@ -11,12 +11,14 @@ from system_hotkey import SystemHotkey
 from autoHeavenly import *
 from autoPet import autoPetStart, onePetStart
 from autoPrestige import checkPrestige, doPrestige
-from equipMenu import changeHelmet, triggerHelmetChangeMode, getStuckedState
+from constants import HeroEleType
+from equipMenu import changeHelmet, triggerHelmetChangeMode, getStuckedState, helmFindChecksumTest, helmFindPatterntest
 from heroes import checkNewlyActivatedHero
 from skillAction import *
 from autoSC import *
 from tapMenu import lvupActiveSkill
 from tapping import tapping, tapCursor
+from uiUtils import checkSlowDown
 
 Client = "LDPlayer"
 ClientClass = "[CLASS:LDPlayerMainFrame]"
@@ -34,8 +36,8 @@ def register_hotkey():
     hk.register(('control', 'shift', 'x'), callback=autoHSStart)
     hk.register(('control', 'shift', 'c'), callback=oneHSStart)
     hk.register(('f4', 'f4', 'f4'), callback=testFunction)
-    hk.register(('f3', 'f3', 'f3'), callback=useSkills)
-    hk.register(('f8', 'f8', 'f8'), callback=goTapping)
+    hk.register(('f3', 'f3', 'f3'), callback=newStartSkLvUp)
+    hk.register(('f6', 'f6', 'f6'), callback=goTapping)
     hk.register(('control', 'shift', 'a'), callback=stopAutoing)
     hk.register(('control', 'shift', 'e'), callback=exitFunction)
     # hk.register(('control', 'shift', 'h'), callback=testFunction )
@@ -49,16 +51,21 @@ testbool = True
 def testFunction(evt):
 
     print('test')
+    ret = checkSlowDown('SCPorter')
+    print(f'ret ', {ret})
+    # heroLeveling()
+    # changeSlash(SlashType.SCPorter)
+    # changeHelmet('force', HeroEleType.Melee)
+    # helmFindPatterntest()
+    # helmFindChecksumTest()
     # constants.ManaEnoughHS_x = 150
     # ret = checkNewlyActivatedHero()
     # print(f'ret ', {ret})
 
-    heroLeveling()
     # doPrestige()
     # time.sleep(15)
     # lvupActiveSkill('SC')
     # triggerHelmetChangeMode(True)
-    # changeHelmet()
     # from timeit import default_timer as timer
     #
     # start = timer()
@@ -91,6 +98,8 @@ def testFunction(evt):
     # useAllSkills()
     # BottomMenuExit()
 
+def newStartSkLvUp(evt):
+    lvupActiveSkill('SC')
 
 def init_env():
     # Set coordinate config

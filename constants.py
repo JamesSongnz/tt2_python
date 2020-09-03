@@ -31,6 +31,13 @@ class HeroEleType(enum.Enum):
     Spell = enum.auto()
     Melee = enum.auto()
     Range = enum.auto()
+    Error = enum.auto()
+
+class SlashType(enum.Enum):
+    SCPush = enum.auto()
+    SCPorter = enum.auto()
+    HSPush = enum.auto()
+    PetPush = enum.auto()
 
 CR_HeroEleTypes = \
     {
