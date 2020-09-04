@@ -3,14 +3,14 @@ from threading import Thread
 
 import skillAction
 from autoPrestige import checkPrestige
-from constants import SlashType
+from constants import SlashType, Icons
 from equipMenu import changeHelmet, changeSlash
 from heroes import heroLeveling
 #from main import gAutoing
 import main as m
-from tapMenu import lvupActiveSkill
+from tapMenu import lvupActiveSkill, cancelSkills
 from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger, tap
-from uiUtils import turnPlayScreen, checkSlowDown
+from uiUtils import turnPlayScreen, checkSlowDown, menuScrollUpLong, bottomMenuExit, openBMenu
 
 ''' 
 class Auto:
@@ -34,8 +34,52 @@ def oneSCStart(evt):
     m.activateWindow()
     SCLoop()
 
+
+FirstTimeRun = True
+auto_start_timer = 0
+Paused_Auto_Interval = 240
+# allow to do other actions while auto ing...
+def rareSCStart(evt):
+    from timeit import default_timer as timer
+    global auto_start_timer, FirstTimeRun
+
+    m.activateWindow()
+    cancelSkills()
+
+    # open bottom menu
+    bottomMenuExit()
+    openBMenu(Icons.BMenu_Heroes.name)
+
+    menuScrollUpLong()
+    SCLoop()
+
+    # if FirstTimeRun:
+    auto_start_timer = timer()
+        # FirstTimeRun = False
+
+    while m.getAutoing():
+
+        # time.sleep(3)
+        time.sleep(30)
+        end = timer()
+        elapsed = end - auto_start_timer
+        print(f' time : ', {elapsed})
+
+        if elapsed > Paused_Auto_Interval:
+            # do SC actions excute
+            m.activateWindow()
+            SCLoop()
+
+            #reset timer
+            auto_start_timer = timer()
+
+
 def autoSC(arg):
     #global gAutoing
+
+    # check newly start
+    if skillAction.emptySkillCircle():
+        lvupActiveSkill('SC')
 
     # equip slash for SC Porter at first
     changeSlash(SlashType.SCPorter)

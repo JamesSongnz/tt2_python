@@ -73,11 +73,26 @@ def menuMakeFull():
         time.sleep(1)
 
 
+
+# menu opearation
+def menuScrollUpLong():
+    x, y = pos_tables[Positions.BMenuWheel.name]
+    # autoit.mouse_move(x, y)
+    # autoit.mouse_down('left')
+    # autoit.mouse_move(x, y+500)
+    # autoit.mouse_up(x,y+500)
+    autoit.mouse_click_drag(x,y,x,y+500,'left', 10)
+    # autoit.mouse_wheel('up', 2)
+    # caution: must put delay to work wheel up
+    time.sleep(0.6)
+
+
 # menu opearation
 def menuScrollUp():
     x, y = pos_tables[Positions.BMenuWheel.name]
     autoit.mouse_move(x, y)
     autoit.mouse_wheel('up', 2)
+    # autoit.mouse_wheel('up', 2)
     # caution: must put delay to work wheel up
     time.sleep(0.6)
 

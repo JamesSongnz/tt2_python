@@ -5,7 +5,8 @@ import time
 
 import autoit
 
-from constants import hero_btn_init_y, hero_btn_x, hero_btn_activated_check_y, CR_HeroEleTypes, HeroEleType
+from constants import hero_btn_init_y, hero_btn_x, hero_btn_activated_check_y, CR_HeroEleTypes, HeroEleType, \
+    herotap_bottombtn_y
 from equipMenu import changeHelmet
 from uiUtils import bottomMenuExitFull, Icons, openBMenu, menuScrollUp, bottomMenuExit
 
@@ -52,10 +53,10 @@ def heroLeveling():
     hero_type = getHeroType()
 
     # click lv up btn
-    distance_btn_y = 85
+    distance_btn_y = 87
     # 480 - 210  / 5 :    - distance due to addition first in the loop
     y = hero_btn_init_y - distance_btn_y
-    for i in range(6):
+    for i in range(9):
         y += distance_btn_y
         color = autoit.pixel_get_color(hero_btn_x, y)
         # skip in case not activated
@@ -75,7 +76,8 @@ def heroLeveling():
 
 def checkActivatedHeroBtn():
     y = hero_btn_activated_check_y
-    while y < 590:
+    # while y < 590:
+    while y < herotap_bottombtn_y:
         y += 20
         color = autoit.pixel_get_color(hero_btn_x, y)
         # skip in case not activated

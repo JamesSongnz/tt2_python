@@ -35,6 +35,7 @@ def register_hotkey():
     hk.register(('control', 'shift', 'z'), callback=oneSCStart)
     hk.register(('control', 'shift', 'x'), callback=autoHSStart)
     hk.register(('control', 'shift', 'c'), callback=oneHSStart)
+    hk.register(('control', 'shift', 'w'), callback=rareSCStart)
     hk.register(('f4', 'f4', 'f4'), callback=testFunction)
     hk.register(('f3', 'f3', 'f3'), callback=newStartSkLvUp)
     hk.register(('f6', 'f6', 'f6'), callback=goTapping)

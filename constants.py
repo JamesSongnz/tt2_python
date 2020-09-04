@@ -48,7 +48,7 @@ CR_HeroEleTypes = \
 
 pos_tables = \
     {
-        Positions.BMenuWheel.name: (241, 740),
+        Positions.BMenuWheel.name: (241, 250),
         Positions.RelicsOnPlayScr.name: (35, 685),
 
     }
@@ -120,6 +120,8 @@ tapmenu_btn_init_y = 451
 hero_btn_x = 548  # rightmost of btn
 hero_btn_init_y = 210
 hero_btn_activated_check_y = 165
+herotap_bottombtn_y = 930
+
 
 # Equp Helm type
 Equip_Ele_Spell_y = 0

@@ -37,7 +37,6 @@ def lvupActiveSkill(mode='SC'):
     skill_list = tap_active_skill_lists[mode]
     y = tapmenu_btn_init_y - distance_btn_y
     for i, sk in enumerate(skill_list):
-    # for i in range(6):
         y += distance_btn_y
 
         # check diabled skill
@@ -74,3 +73,17 @@ def lvupActiveSkill(mode='SC'):
 
     bottomMenuExit()
 
+def cancelSkills():
+    # open bottom menu
+    bottomMenuExit()
+    openBMenu(Icons.BMenu_Tap.name)
+
+    distance_btn_y = 88
+    y = tapmenu_btn_init_y - distance_btn_y
+    for i in range(6):
+        y += distance_btn_y
+
+        autoit.mouse_click('left', hero_btn_x, y, 1, 5)
+
+    time.sleep(1)
+    bottomMenuExit()

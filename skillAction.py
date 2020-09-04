@@ -43,11 +43,21 @@ def checkReadyBtn(at):
     return checkSkillStatus(at, 'ready')
 
 
+def emptySkillCircle():
+    color = autoit.pixel_get_color(skill_coord['FS'], 970)
+    return color != 0xDB6700
+    # return checkSkillStatus('FS', 'empty')
+    # return checkSkillStatus('HS', 'empty')
+
 def checkSkillStatus(at, state='ready'):
     x = skill_coord[at]
     if state == 'ready':
         y = skill_btn_ready_y
         state_color = 0xffffff
+    elif state == 'empty':
+        y = 970
+        state_color = 0xDB6700 # FS
+        # state_color = 0x16E2E6 # HS
     else: # active
         y = skill_btn_active_y
         state_color = 0xffae00
