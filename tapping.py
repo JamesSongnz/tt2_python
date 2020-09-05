@@ -14,16 +14,17 @@ def catchFairy(mode='long'):
     offset = int((x2 - x ) / step)
     for i in range(step):
         autoit.mouse_click('left', x+i*offset, y, 1, 5)
-        time.sleep(0.07)
+        # time.sleep(0.07)
 
-        tapFairyCollect()
+    tapFairyCollect()
 
+    time.sleep(1)
     # reverse only mode is 1 (normal)
     if 'long' == mode:
         for i in range(11, -1, -1):
             autoit.mouse_click('left', x + i*offset, y, 1, 5)
-            time.sleep(0.07)
-            tapFairyCollect()
+            # time.sleep(0.07)
+            # tapFairyCollect()
 
 
     time.sleep(1)

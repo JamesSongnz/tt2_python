@@ -241,7 +241,8 @@ Equip_patten_Lists  = \
         # 32, 303 - 008BA3  ( 14, 290 )
             [HeroEleType.Spell, 18, 13, (0x008BA3,), 'helm of tears'],
             [HeroEleType.Range, 21, 19, (0xF9B30D,), 'Fedora'],
-            [HeroEleType.Melee, 13, 24, (0xE5E5E5,), 'Valkyrie Circlet'],
+            # [HeroEleType.Melee, 13, 24, (0xE5E5E5,), 'Valkyrie Circlet'],
+            [HeroEleType.Melee, 30, 12, (0xDB6700,), 'Dusty'],
             ],
     'slash': [
             [SlashType.SCPorter, 22, 28, (0x1C559A, 0x1E75BA,), 'Mythtical Echo'],

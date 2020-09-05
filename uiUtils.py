@@ -5,6 +5,7 @@ import autoit
 from constants import icon_tables_e, icon_checksums_e, Icons, pos_tables, Positions
 from skillAction import *
 from tapping import tapMenuFullExit
+from utils import IsColorAtCoord
 
 
 def CoordFromTuple(tuple):
@@ -81,7 +82,7 @@ def menuScrollUpLong():
     # autoit.mouse_down('left')
     # autoit.mouse_move(x, y+500)
     # autoit.mouse_up(x,y+500)
-    autoit.mouse_click_drag(x,y,x,y+500,'left', 10)
+    autoit.mouse_click_drag(x,y,x,y+700,'left', 7)
     # autoit.mouse_wheel('up', 2)
     # caution: must put delay to work wheel up
     time.sleep(0.6)
@@ -90,10 +91,14 @@ def menuScrollUpLong():
 # menu opearation
 def menuScrollUp():
     x, y = pos_tables[Positions.BMenuWheel.name]
-    autoit.mouse_move(x, y)
-    autoit.mouse_wheel('up', 2)
+
+    # autoit.mouse_down('left')
+    autoit.mouse_click_drag(x, y, x, y +700)
+
+    # autoit.mouse_move(x, y)
     # autoit.mouse_wheel('up', 2)
-    # caution: must put delay to work wheel up
+    # # autoit.mouse_wheel('up', 2)
+    # # caution: must put delay to work wheel up
     time.sleep(0.6)
 
 
@@ -107,6 +112,16 @@ def turnPlayScreen():
         bottomMenuExit()
         time.sleep(0.2)
         bottomMenuExit()
+
+def turnOnBossBattle():
+    # check boss battle box
+    # 510, 95, 0x3c4a4d : boss engaging.
+    # 0xef5b10 : fight boss btn color
+    x = 510
+    y = 95
+    # c = autoit.pixel_get_color(510, 95)
+    if IsColorAtCoord(x, y, 0xef5b10, offset=0x2):
+        autoit.mouse_click('left', x, y, 1, 10)
 
 
 # check boss timer bar

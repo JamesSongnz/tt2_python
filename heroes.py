@@ -54,22 +54,44 @@ def heroLeveling():
 
     # click lv up btn
     distance_btn_y = 87
+    y_step = 20
+    number_rows = 9
     # 480 - 210  / 5 :    - distance due to addition first in the loop
-    y = hero_btn_init_y - distance_btn_y
-    for i in range(9):
-        y += distance_btn_y
-        color = autoit.pixel_get_color(hero_btn_x, y)
-        # skip in case not activated
-        if color < 0xe00000:
-            continue
 
-        for j in range(4):
-            autoit.mouse_click('left', hero_btn_x, y, 1, 3)
-            time.sleep(0.1)
+    # total 3 times repeat to lve up  all
+    for n in range(2):
+        y = hero_btn_init_y - distance_btn_y
+        for i in range(y, y+(number_rows*distance_btn_y), y_step):
+            y += y_step
+            color = autoit.pixel_get_color(hero_btn_x, y)
+            # skip in case not activated
+            if color < 0xe00000:
+                continue
+
+            # for j in range(4):
+            # click here again when enable btn is still on
+            autoit.mouse_click('left', hero_btn_x, y, 1, 2)
+            # time.sleep(0.1)
+
+
+    # # click lv up btn
+    # distance_btn_y = 87
+    # # 480 - 210  / 5 :    - distance due to addition first in the loop
+    # y = hero_btn_init_y - distance_btn_y
+    # for i in range(9):
+    #     y += distance_btn_y
+    #     color = autoit.pixel_get_color(hero_btn_x, y)
+    #     # skip in case not activated
+    #     if color < 0xe00000:
+    #         continue
+    #
+    #     for j in range(4):
+    #         autoit.mouse_click('left', hero_btn_x, y, 1, 3)
+    #         time.sleep(0.1)
 
     # helmet change when there is a newly activated hero
-    if checkHelmetFlag:
-        changeHelmet('force', hero_type)
+    # if checkHelmetFlag:
+    #     changeHelmet('force', hero_type)
 
     bottomMenuExit()
 

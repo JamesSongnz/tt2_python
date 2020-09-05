@@ -78,9 +78,12 @@ def cancelSkills():
     bottomMenuExit()
     openBMenu(Icons.BMenu_Tap.name)
 
+    # sword master lv up
+    autoit.mouse_click('left', hero_btn_x, swordmaster_btn_y, 1, 5)
+
     distance_btn_y = 88
     y = tapmenu_btn_init_y - distance_btn_y
-    for i in range(6):
+    for i in range(5):
         y += distance_btn_y
 
         autoit.mouse_click('left', hero_btn_x, y, 1, 5)

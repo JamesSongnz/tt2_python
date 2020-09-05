@@ -2,10 +2,10 @@ import autoit
 
 from constants import HeroEleType
 
-
+# find color at pos with  color range
 def IsColorAtCoord(x, y, check_color, offset=0x0f):
-    color = autoit.pixel_get_color(x, y )
-    print(f'        color at ', {x}, {y}, {hex(color)})
+    color = autoit.pixel_get_color(x, y)
+    # print(f'        color at ', {x}, {y}, {hex(color)})
     r = color >> 16 & 0xff
     g = color >> 8 & 0xff
     b = color & 0xff
@@ -21,6 +21,7 @@ def IsColorAtCoord(x, y, check_color, offset=0x0f):
 
     return False
 
+# find one color element from r g b  at x y position
 def IsOneColorAtCoord(x, y, one_color, offset=0xf):
     color = autoit.pixel_get_color(x, y )
     r = color >> 16 & 0xff

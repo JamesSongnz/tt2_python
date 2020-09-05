@@ -10,7 +10,8 @@ from heroes import heroLeveling
 import main as m
 from tapMenu import lvupActiveSkill, cancelSkills
 from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger, tap
-from uiUtils import turnPlayScreen, checkSlowDown, menuScrollUpLong, bottomMenuExit, openBMenu
+from uiUtils import turnPlayScreen, checkSlowDown, menuScrollUpLong, bottomMenuExit, openBMenu, turnOnBossBattle, \
+    menuScrollUp
 
 ''' 
 class Auto:
@@ -37,20 +38,12 @@ def oneSCStart(evt):
 
 FirstTimeRun = True
 auto_start_timer = 0
-Paused_Auto_Interval = 240
+Paused_Auto_Interval = 220
 # allow to do other actions while auto ing...
 def rareSCStart(evt):
     from timeit import default_timer as timer
     global auto_start_timer, FirstTimeRun
 
-    m.activateWindow()
-    cancelSkills()
-
-    # open bottom menu
-    bottomMenuExit()
-    openBMenu(Icons.BMenu_Heroes.name)
-
-    menuScrollUpLong()
     SCLoop()
 
     # if FirstTimeRun:
@@ -66,8 +59,22 @@ def rareSCStart(evt):
         print(f' time : ', {elapsed})
 
         if elapsed > Paused_Auto_Interval:
-            # do SC actions excute
             m.activateWindow()
+
+            # engage Boss Battle
+            turnOnBossBattle()
+
+            cancelSkills()
+
+            # open bottom menu
+            bottomMenuExit()
+            openBMenu(Icons.BMenu_Heroes.name)
+
+            # menuScrollUp()
+            #do heroes lv up at the first time
+            heroLeveling()
+
+            # do SC actions excute
             SCLoop()
 
             #reset timer
@@ -82,7 +89,7 @@ def autoSC(arg):
         lvupActiveSkill('SC')
 
     # equip slash for SC Porter at first
-    changeSlash(SlashType.SCPorter)
+    # changeSlash(SlashType.SCPorter)
 
     while m.getAutoing():
         SCLoop()
