@@ -9,19 +9,20 @@ from heroes import heroLeveling
 #from main import gAutoing
 import main as m
 from tapMenu import lvupActiveSkill, cancelSkills
-from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger, tap
+from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger, tap, simpleClickFairy, \
+    isAnyDagger, tapFairyCollect
 from uiUtils import turnPlayScreen, checkSlowDown, menuScrollUpLong, bottomMenuExit, openBMenu, turnOnBossBattle, \
     menuScrollUp
 
 ''' 
-class Auto:
-    ing = False
-    
-class AutoSC(Auto):
+
+72926
+1.09 108
 
 '''
 
-SCRunMode = 'farm'
+SCRunMode = 'push'
+# SCRunMode = 'farm'
 
 def autoSCStart(evt):
     SCThread = Thread(target=autoSC, args=(1,))
@@ -95,8 +96,12 @@ def autoSC(arg):
         SCLoop()
 
 
+nothing_done_loop_cnt = 0
+
 def SCLoop():
-    global SCRunMode
+    global SCRunMode, nothing_done_loop_cnt
+
+
     print(f' autoSC, gauto ', {m.getAutoing()})
     # check play screen status
     turnPlayScreen()
@@ -107,18 +112,37 @@ def SCLoop():
     tapClanmate()
 
     if SCRunMode == 'push':
-        # posing dagger
-        posionDagger()
+
+        # try 3 times to use all daggers
+        while isAnyDagger():
+            nothing_done_loop_cnt = True
+            # posing dagger
+            posionDagger()
+            # check skill is activated.
+            skillAction.useAllSkillsButHS()
+
+            nothing_done_loop_cnt = 1 # to skip fiary & leveliing
+
+
     else:
         tapPetMoney()
         # active FS
         activateFS()
 
     # catch fairy
-    catchFairy()
+    # catch only nothing has done before
+    # if (nothing_done_loop_cnt % 5) == 0:
+        # catchFairy()
+    simpleClickFairy()
+    time.sleep(1)
 
-    # heroes lv up
-    heroLeveling()
+    tapFairyCollect()
+
+    # do per 5 loop times.
+    if (nothing_done_loop_cnt % 5) == 0:
+        # heroes lv up
+        tapPetMoney()
+        heroLeveling()
     #  move into hero leveling () set hero type equip
     # changeHelmet()
 
@@ -128,11 +152,13 @@ def SCLoop():
 
     # check slow down
     # if 1:
-    if checkSlowDown():
+    # if checkSlowDown():
+    if False:
         changeSlash(SlashType.SCPush)
 
     # move cursor to indicate loop action is over
     tap(325, 780)
 
     # wait next turn 10s
-    time.sleep(5)
+    time.sleep(1.5)
+    nothing_done_loop_cnt += 1

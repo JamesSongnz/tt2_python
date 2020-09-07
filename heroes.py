@@ -12,7 +12,7 @@ from uiUtils import bottomMenuExitFull, Icons, openBMenu, menuScrollUp, bottomMe
 
 import enum
 
-from utils import IsColorInRect, IsOneColorInVRange
+from utils import IsColorInRect, IsOneColorInVRange, IsColorAtCoord
 
 ''' 
 class BMenus(enum.Enum):
@@ -43,8 +43,16 @@ def heroLeveling():
         bottomMenuExit()
         return
 
+    # check if scrool is necessary
+    # 129, 192  ~ 232
+    need_scroll = False
+    for hy in range(192, 232, 5):
+        if not IsColorAtCoord(129, 192, 0x303030, offset=0x01):
+            need_scroll = True
+
     # scroll up
-    menuScrollUp()
+    if need_scroll:
+        menuScrollUp()
 
     if checkNewlyActivatedHero():
         checkHelmetFlag = True
