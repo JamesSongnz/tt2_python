@@ -2,17 +2,16 @@ import time
 from threading import Thread
 
 import skillAction
-from autoPrestige import checkPrestige
-from constants import SlashType, Icons
-from equipMenu import changeHelmet, changeSlash
+from data.constants import SlashType, Icons
+from equipMenu import changeSlash
 from heroes import heroLeveling
 #from main import gAutoing
 import main as m
 from tapMenu import lvupActiveSkill, cancelSkills
-from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger, tap, simpleClickFairy, \
+from tapping import tapPetMoney, tapClanmate, activateFS, posionDagger,  simpleClickFairy, \
     isAnyDagger, tapFairyCollect
-from uiUtils import turnPlayScreen, checkSlowDown, menuScrollUpLong, bottomMenuExit, openBMenu, turnOnBossBattle, \
-    menuScrollUp
+from ui.menus import bottomMenuExit, openBMenu
+from ui.uiUtils import turnPlayScreen,  turnOnBossBattle
 
 ''' 
 
@@ -147,8 +146,8 @@ def SCLoop():
     # changeHelmet()
 
     # check prestige & restart active skills
-    if checkPrestige():
-        lvupActiveSkill()
+    # if checkPrestige():
+    #     lvupActiveSkill()
 
     # check slow down
     # if 1:

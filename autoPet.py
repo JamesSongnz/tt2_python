@@ -3,8 +3,8 @@ from threading import Thread
 
 import skillAction
 from heroes import heroLeveling
-from tapping import tapPetMoney, tapClanmate, tapping, activateFS, catchFairy, posionDagger, tapPetBurst
-from uiUtils import turnPlayScreen
+from tapping import tapClanmate, catchFairy, posionDagger, tapPetBurst
+from ui.uiUtils import turnPlayScreen
 
 
 def autoPetStart(evt):

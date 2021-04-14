@@ -1,12 +1,10 @@
-import enum
 import time
 
 import autoit
 
-from constants import CR_HeroEleTypes, Icons, HeroEleType, Equip_Ele_Spell_y, Equip_Ele_Range_y, Equip_Ele_Melee_y, \
-    SlashType
-from uiUtils import bottomMenuExit, openBMenu
-from utils import IsColorInRect, IsColorAtCoord, IsColorInVRange, findColorInVRange
+from data.constants import Icons, HeroEleType, SlashType
+from ui.menus import bottomMenuExit
+from utils import IsColorAtCoord, findColorInVRange
 
 _b_changing = False
 

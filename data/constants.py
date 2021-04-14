@@ -2,6 +2,12 @@
 import enum
 
 
+Client = "nzs"
+ClientClass = "[CLASS:LDPlayerMainFrame]"
+
+
+SCREEN_SCALE_RATIO = 1.25
+
 
 # config for HS
 Stucked_check_count = 15
@@ -53,6 +59,11 @@ pos_tables = \
 
     }
 
+icon_files_e = \
+    {
+        Icons.Menu_Make_FUll.name: "./imgs/btn_menuexit.png"
+    }
+
 
 icon_tables_e = \
     {
@@ -74,7 +85,7 @@ icon_checksums_e = \
         Icons.Bottom_Menu_X_Full.name: 1531251295,
         Icons.Bottom_Menu_X_Half.name: 1952088816,
 
-        Icons.Menu_Make_FUll.name: 1823557018
+        Icons.Menu_Make_FUll.name: -52961674 #1823557018
     }
 
 

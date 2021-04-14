@@ -1,16 +1,13 @@
 '''
     lv up latest heroes
 '''
-import time
 
 import autoit
 
-from constants import hero_btn_init_y, hero_btn_x, hero_btn_activated_check_y, CR_HeroEleTypes, HeroEleType, \
+from data.constants import hero_btn_init_y, hero_btn_x, hero_btn_activated_check_y, CR_HeroEleTypes, HeroEleType, \
     herotap_bottombtn_y
-from equipMenu import changeHelmet
-from uiUtils import bottomMenuExitFull, Icons, openBMenu, menuScrollUp, bottomMenuExit
-
-import enum
+from ui.menus import bottomMenuExit
+from ui.uiUtils import Icons, menuScrollUp
 
 from utils import IsColorInRect, IsOneColorInVRange, IsColorAtCoord
 
@@ -33,7 +30,7 @@ def heroLeveling():
 
     # open bottom menu
     bottomMenuExit()
-    openBMenu(Icons.BMenu_Heroes.name)
+    # openBMenu(Icons.BMenu_Heroes.name)
 
     # check activated btn
 

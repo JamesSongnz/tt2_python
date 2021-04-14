@@ -2,10 +2,10 @@ import time
 
 import autoit
 
-from constants import tapmenu_megaboost_btn_y, c_megaboost, tapmenu_btn_init_y, swordmaster_btn_y, \
+from data.constants import tapmenu_megaboost_btn_y, c_megaboost, tapmenu_btn_init_y, swordmaster_btn_y, \
     tapmenu_skill_lvbtn_x, CR_AtiveSkill_lvup_btn, CR_ActiveSkill_btn, CR_ActiveSkill_btn2
 from heroes import hero_btn_x
-from uiUtils import menuScrollUp, bottomMenuExit, openBMenu, Icons
+from ui.uiUtils import menuScrollUp, bottomMenuExit, openBMenu, Icons
 from utils import IsColorAtCoord
 
 

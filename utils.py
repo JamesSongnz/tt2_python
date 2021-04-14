@@ -1,6 +1,5 @@
 import autoit
 
-from constants import HeroEleType
 
 # find color at pos with  color range
 def IsColorAtCoord(x, y, check_color, offset=0x0f):

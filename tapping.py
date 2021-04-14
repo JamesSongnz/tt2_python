@@ -2,8 +2,8 @@ import time
 
 import autoit
 
-from constants import click_coord_table, CR_Dagger
-from utils import IsColorAtCoord, IsColorInVRange
+from data.constants import click_coord_table, CR_Dagger
+from utils import IsColorInVRange
 
 def simpleClickFairy():
     # catch fairy on moving area tap 1 sec
@@ -144,12 +144,6 @@ def tapMenuFullExit():
     _tap('menufullexit')
 
 
-def _tap(pos_str):
-    x, y = click_coord_table[pos_str]
-    autoit.mouse_click("left", x, y, 1, 3)
-
-def tap(x,y):
-    autoit.mouse_click("left", x, y, 1, 3)
 
 
 def _tapCursor():

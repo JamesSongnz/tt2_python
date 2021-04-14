@@ -1,7 +1,7 @@
 import autoit
 
-import uiUtils
-from constants import skill_coord, skill_btn_ready_y, skill_btn_y, skill_btn_active_y
+from ui import uiUtils
+from data.constants import skill_coord, skill_btn_ready_y, skill_btn_y, skill_btn_active_y
 
 """
     close bottom tap
